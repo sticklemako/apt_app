@@ -1,0 +1,78 @@
+<div class="row title-bar">
+  <h4 class="center-text">Income Statement</h4>
+</div>
+<div class="row" style="padding-top:59px;">
+  <p id="notice"><%= notice %></p>
+</div>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-5">
+    <div class="col-md-12 center-text" style="padding:5px; background:coral">Debit</div>
+    <table class="table table-custom">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Value</th>          
+          <th>Desc</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @income_data.each do |ic| %>
+          <% if ic.is_debit %>
+            <tr style="margin-bottom:3px;">
+              <td class="cell-style1 align-left">
+                <% if ic.account_head %>
+                  <%= ic.account_head.name %>
+                <% end %>
+              </td>
+              <td class="cell-style1"><%= ic.value %></td>
+              <td class="cell-style1 align-left"><%= ic.title %></td>
+            </tr>
+          <% end %>
+        <% end %>
+        <tr>
+          <td>Total</td>
+          <td><%= @income_data.where(:is_debit => true).sum(:value) %></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-5">
+    <div class="col-md-12 center-text" style="padding:5px; background:coral">Credit</div>
+    <table class="table table-custom">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Value</th>          
+          <th>Desc</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @income_data.each do |ic| %>
+          <% if !ic.is_debit %>
+            <tr style="margin-bottom:3px;">
+              <td class="cell-style1 align-left">
+                <% if ic.account_head %>
+                  <%= ic.account_head.name %>
+                <% end %>
+              </td>
+              <td class="cell-style1"><%= ic.value %></td>
+              <td class="cell-style1 align-left"><%= ic.title %></td>
+            </tr>
+          <% end %>
+        <% end %>
+        <tr>
+          <td>Total</td>
+          <td><%= @income_data.where(:is_debit => false).sum(:value) %></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>

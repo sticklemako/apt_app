@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  entry_type: 
+  chq_no: MyString
+  receipt_no: MyString
+  value: 1.5
+  is_debit: false
+  title: MyString
+  details: MyText
+  date_of: 2016-05-26
+
+two:
+  entry_type: 
+  chq_no: MyString
+  receipt_no: MyString
+  value: 1.5
+  is_debit: false
+  title: MyString
+  details: MyText
+  date_of: 2016-05-26

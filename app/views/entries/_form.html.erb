@@ -1,0 +1,62 @@
+<%= form_for(@entry) do |f| %>
+  <% if @entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+      <% @entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="field">
+        <%= f.label :title %><br>
+        <%= f.text_field :title %>
+      </div>
+      <div class="field">
+        <%= f.label :entry_type %><br>
+        <%= f.text_field :entry_type %>
+      </div>
+      <div class="field">
+        <%= f.label "Account Head" %><br>
+        <%= fields_for :account_head do |field| %>
+          <%= field.select :id, AccountHead.all.map { |e| [e.name, e.id] }, prompt: "--Choose--" %>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= f.label :value %><br>
+        <%= f.text_field :value %>
+      </div>
+      <div class="field">
+        <%= f.label "Date of Transcation" %><br>
+        <%= f.date_select :date_of %>
+      </div>
+    </div>
+    <div class="col-md-6">      
+      <div class="field">
+        <%= f.label "Check box if Debit" %><br>
+        <%= f.check_box :is_debit %>
+      </div> 
+      <div class="field">
+        <%= f.label :chq_no %><br>
+        <%= f.text_field :chq_no %>
+      </div>
+      <div class="field">
+        <%= f.label :receipt_no %><br>
+        <%= f.text_field :receipt_no %>
+      </div>
+      <div class="field">
+        <%= f.label :details %><br>
+        <%= f.text_area :details %>
+      </div>      
+    </div>
+    <div class="col-md-12 actions">
+      <%= f.submit %>
+    </div>
+  </div>
+    
+<% end %>

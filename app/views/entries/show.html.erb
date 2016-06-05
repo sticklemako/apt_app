@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @entry.entry_type %>
+</p>
+
+<p>
+  <strong>Chq no:</strong>
+  <%= @entry.chq_no %>
+</p>
+
+<p>
+  <strong>Receipt no:</strong>
+  <%= @entry.receipt_no %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @entry.value %>
+</p>
+
+<p>
+  <strong>Is debit:</strong>
+  <%= @entry.is_debit %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @entry.title %>
+</p>
+
+<p>
+  <strong>Details:</strong>
+  <%= @entry.details %>
+</p>
+
+<p>
+  <strong>Date of:</strong>
+  <%= @entry.date_of %>
+</p>
+
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', entries_path %>

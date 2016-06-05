@@ -1,0 +1,31 @@
+<%= form_for(@account_head) do |f| %>
+  <% if @account_head.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account_head.errors.count, "error") %> prohibited this account_head from being saved:</h2>
+
+      <ul>
+      <% @account_head.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :desc %><br>
+    <%= f.text_area :desc %>
+  </div>
+  <div class="field">
+    <%= f.label "Category" %><br>
+    <%= fields_for :category do |field| %>
+      <%= field.select :name, Category.all.map { |e| [e.name] }, prompt: "Choose Category" %>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

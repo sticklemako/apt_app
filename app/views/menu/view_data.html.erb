@@ -1,0 +1,48 @@
+<div class="row title-bar">
+  <h4 class="center-text">View Data By Category</h4>
+</div>
+<div class="row" style="padding-top:59px;">
+  <p id="notice"><%= notice %></p>
+</div>
+<div class="row">
+  <%= form_tag(:controller => 'menu', :action => 'view_data', :method => 'post') do %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= select_tag(:sorting, options_from_collection_for_select(Category.all, "name","name"), prompt: "Show All") %>
+    <%= submit_tag("Sort") %>
+  <% end %>
+</div>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <table class="table table-custom">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th class="no-bot-border no-bkgrd"></th>
+          <th>Categories</th>          
+          <th class="no-bot-border no-bkgrd"></th>
+          <th>Desc</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @final_data.each do |account_head| %>
+          <tr style="margin-bottom:3px;">
+            <td class="cell-style1 align-left"><%= account_head.name %></td>
+            <td style="border-top:none"></td>
+            <td class="cell-style1 align-left">
+              <% account_head.categories.each do |category| %>
+                <%= category.name %>, 
+              <% end %>
+            </td>
+            <td style="border-top:none"></td>
+            <td class="cell-style1 align-left"><%= account_head.desc %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>

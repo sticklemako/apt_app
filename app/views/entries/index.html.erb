@@ -1,0 +1,67 @@
+<div class="row title-bar">
+  <h4 class="center-text">Add / Edit Entries</h4>
+</div>
+<div class="row" style="padding-top:59px;">
+  <p id="notice"><%= notice %></p>
+</div>
+<div class="row">
+  <div class="col-md-12 table-responsive">
+    <table class="table table-custom">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Entry Type</th>
+          <th class="align-left">Entry Title</th>
+          <th>Account Head</th>
+          <th class="align-left">Details</th>
+          <th class="no-bot-border no-bkgrd"></th>
+          <th>Debit/Credit</th>
+          <th>Value</th>
+          <th>Cheque No</th>
+          <th>Receipt No</th>
+          <th class="no-bot-border no-bkgrd"></th>
+          <th colspan="3" class="center-text">Functions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @entries.each do |entry| %>
+          <tr style="margin-bottom:3px;">
+            <td class="cell-style1"><%= entry.date_of %></td>
+            <td class="cell-style1"><%= entry.entry_type %></td>
+            <td class="cell-style1 align-left"><%= entry.title %></td>
+            <td class="cell-style1">
+              <% if entry.account_head %>
+                <%= entry.account_head.name %></td>
+              <% end %>
+            <td class="cell-style1 align-left"><%= entry.details %></td>
+            <td class="no-top-border"></td>
+            <td class="cell-style1">
+              <% if entry.is_debit %>
+                Debit
+              <% else %>
+                Credit
+              <% end %>
+            </td>
+            <td class="cell-style1 align-right">
+              Rs <%= entry.value %>
+            </td>
+            <td class="cell-style1"><%= entry.chq_no %></td>
+            <td class="cell-style1"><%= entry.receipt_no %></td>
+            <td class="no-top-border"></td>
+            <td class="cell-style2"><%= link_to 'Show', entry %></td>
+            <td class="cell-style2"><%= link_to 'Edit', edit_entry_path(entry) %></td>
+            <td class="cell-style2"><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<br>
+
+<%= link_to 'New Entry', new_entry_path %>
+
+
